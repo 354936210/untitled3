@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
-    <el-button @click="exchangeUrl"></el-button>
+    <div>
+      <el-radio v-model="radiov" label="1" @change="radioChange">狼人</el-radio>
+      <el-radio v-model="radiov" label="2" @change="radioChange">神器修炼场</el-radio>
+    </div>
     <video-player  class="video-player vjs-custom-skin"
                    ref="videoPlayer"
                    :playsinline="true"
@@ -17,7 +20,7 @@ export default {
   },
   data () {
     return {
-      vedioUrl: 'http://w354936210.oss-cn-zhangjiakou.aliyuncs.com/%E7%8B%BC%E4%BA%BA%E6%97%A0UI.mp4',
+      radiov: '1',
       playerOptions: {
         playbackRates: [0.7, 1.0, 1.5, 2.0], // 播放速度
         autoplay: false, // 如果true,浏览器准备好时开始回放。
@@ -47,9 +50,15 @@ export default {
     }
   },
   methods: {
-    exchangeUrl: function () {
-      const myPlayer = this.$refs.videoPlayer.player
-      myPlayer.src(this.vedioUrl)
+    radioChange: function (val) {
+      if (val === '1') {
+        const myPlayer = this.$refs.videoPlayer.player
+        myPlayer.src('http://w354936210.oss-cn-zhangjiakou.aliyuncs.com/%E7%8B%BC%E4%BA%BA%E6%97%A0UI.mp4')
+      }
+      if (val === '2') {
+        const myPlayer = this.$refs.videoPlayer.player
+        myPlayer.src('http://w354936210.oss-cn-zhangjiakou.aliyuncs.com/%E7%A5%9E%E5%99%A8%E4%BF%AE%E7%82%BC%E6%97%A0UI.mp4')
+      }
     }
   }
 }
